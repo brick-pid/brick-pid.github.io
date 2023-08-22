@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>单元测试用例构造方法 | Hexo</title><meta name="description" content="单元测试用例构造方法 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Hexo"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div class="wrap"><header><h1 class="branding"><a href="/" title="Hexo">Hexo</a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"><a class="nav-list-link" href="https://github.com/brick-pid" target="_blank">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">单元测试用例构造方法</h1><div class="post-info"><a></a>2023-02-26</div><div class="post-content"><p>在测试驱动开发中，编写单元测试用例是承上(Specification)启下(Implementation)的一步：</p>
+<blockquote>
+<ol>
+<li><strong>Spec</strong>: Write a specification for the function.</li>
+<li><strong>Test</strong>: Write tests that exercise the specification.</li>
+<li><strong>Implement</strong>: Write the implementation.</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="划分输入空间"><a href="#划分输入空间" class="headerlink" title="划分输入空间"></a>划分输入空间</h2><ol>
+<li>什么是一组好的测试用例？<ol>
+<li>足够完备；</li>
+<li>不至于太大；</li>
+</ol>
+</li>
+<li>什么是划分（Partition）？<ol>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9B%86%E5%90%88%E5%88%92%E5%88%86">集合划分</a> 的数学定义；</li>
+<li>对于输入空间而言，就是将输入空间划分为一组互不相交的子集；</li>
+</ol>
+</li>
+<li>划分输入空间的目的是什么？<ol>
+<li>将输入空间划分为互不相交的子集，以便为每一个子集构造一个测试用例；</li>
+<li>可以类比为将输入空间划分为不同的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E7%AD%89%E4%BB%B7%E7%B1%BB">等价类</a>，每一个等价类用一个<em>代表元素</em>表示；</li>
+</ol>
+</li>
+<li>为什么要划分输入空间？背后的思想是什么？<ol>
+<li>将输入空间划分为一组互不相交的子集，每个子集都用一个测试用来进行测试。这样可以达到较高的测试覆盖率，避免随机测试时测试者因为经验不足而导致的遗漏。</li>
+</ol>
+</li>
+</ol>
+<h2 id="边界值分析"><a href="#边界值分析" class="headerlink" title="边界值分析"></a>边界值分析</h2><ol>
+<li>为什么要加入边界值分析？<ol>
+<li>Bug经常发生在子集之间的边界处，包含边界有助于发现这些Bug；</li>
+</ol>
+</li>
+<li>为什么Bug经常发生在边界处？<ol>
+<li>可能因为<em>程序员</em>经常犯一些偏移一的错误，例如写成&lt;&#x3D;而不是&lt;，或将计数器初始化为0而不是1；</li>
+<li>也可能是因为一些边界可能需要在代码中作为<em>特殊情况</em>处理；</li>
+</ol>
+</li>
+<li>举出常见的边界值例子：<ol>
+<li>0是正数和负数之间的边界；</li>
+<li>数值类型（如int或double）的最大和最小值；</li>
+<li>集合类型的边界值是空容器（如空字符串、空列表或空集）；</li>
+</ol>
+</li>
+</ol>
+<h2 id="结合边界值，得到无效等价类"><a href="#结合边界值，得到无效等价类" class="headerlink" title="结合边界值，得到无效等价类"></a>结合边界值，得到无效等价类</h2><ol>
+<li>为什么要分析无效等价类？<ol>
+<li>增加系统的鲁棒性；保证系统能够处理无效输入而不崩溃；</li>
+</ol>
+</li>
+<li>举出常见的无效等价类的例子：<ol>
+<li>超出边界值：如果一个输入字段的有效范围是1-10，那么任何超出这个范围的值都将被视为无效，例如负数或大于10的数字。</li>
+<li>不符合前置条件的输入<ol>
+<li>非数字值：如果一个输入字段只能包含数字值，那么任何非数字字符，例如字母、符号或空格都将被视为无效。</li>
+<li>空值：如果一个输入字段是必需的且不允许空或空值，那么任何空或空值都将被视为无效。</li>
+<li>无效格式：如果一个输入字段需要特定的格式，例如日期格式或电话号码格式，那么任何不符合该格式的输入都将被视为无效。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="以为Lab1的-guessFollowsGraph-方法为例："><a href="#以为Lab1的-guessFollowsGraph-方法为例：" class="headerlink" title="以为Lab1的 guessFollowsGraph() 方法为例："></a>以为Lab1的 <code>guessFollowsGraph()</code> 方法为例：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Guess who might follow whom, from evidence found in tweets.</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tweets</span></span><br><span class="line"><span class="comment">     *            a list of tweets providing the evidence, not modified by this</span></span><br><span class="line"><span class="comment">     *            method.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> a social network (as defined above) in which Ernie follows Bert</span></span><br><span class="line"><span class="comment">     *         if and only if there is evidence for it in the given list of</span></span><br><span class="line"><span class="comment">     *         tweets.</span></span><br><span class="line"><span class="comment">     *         One kind of evidence that Ernie follows Bert is if Ernie</span></span><br><span class="line"><span class="comment">     *         @-mentions Bert in a tweet. This must be implemented. Other kinds</span></span><br><span class="line"><span class="comment">     *         of evidence may be used at the implementor&#x27;s discretion.</span></span><br><span class="line"><span class="comment">     *         All the Twitter usernames in the returned social network must be</span></span><br><span class="line"><span class="comment">     *         either authors or @-mentions in the list of tweets.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Set&lt;String&gt;&gt; <span class="title function_">guessFollowsGraph</span><span class="params">(List&lt;Tweet&gt; tweets)</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;not implemented&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>三个指标：</p>
+<ol>
+<li>借助边界值划分等价类：容器 <code>tweets</code> 是否为空？</li>
+<li>前置条件：<code>tweets</code> 是否有提到其他人？</li>
+<li>无效等价类：提到的方式是否<em>合法</em>？</li>
+</ol>
+<p>测试用例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.  空列表。期望返回一个空的 social network。</span><br><span class="line">2.  多条 tweets，没有人被提到。期望返回一个空的 social network。</span><br><span class="line">3.  多条 tweets，只有一个人被提到。期望返回一个只包含这个人的 social network。</span><br><span class="line">4.  多条 tweets，有多个人被提到。期望返回一个包含这些人的 social network。</span><br><span class="line">5.  多条 tweets，出现无效的 @-mention，即 @-mention 不是 authors。期望程序能够正确处理这些无效数据，返回正确的 social network。</span><br><span class="line">6.  多条 tweets，出现自我 @-mention，即 author @-mention 自己。期望程序能够正确处理这些无效数据，返回正确的 social network。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>reference: <a target="_blank" rel="noopener" href="http://web.mit.edu/6.031/www/sp21/classes/03-testing/#choosing_test_cases_by_partitioning">Reading 3: Testing</a></li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2023/03/04/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/">prev</a><a class="next" href="/2023/02/25/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">next</a></div><div class="copyright"><p>&copy; 2021 - 2023 <a target="_blank" rel="noopener" href="https://github.com/brick-pid">brick pid</a>.<br>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/Dreyer/hexo-theme-artemis" target="_blank">Artemis</a>.</p></div></footer></div></body></html>

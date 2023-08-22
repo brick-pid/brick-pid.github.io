@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>搜索算法 | Hexo</title><meta name="description" content="搜索算法 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Hexo"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div class="wrap"><header><h1 class="branding"><a href="/" title="Hexo">Hexo</a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"><a class="nav-list-link" href="https://github.com/brick-pid" target="_blank">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">搜索算法</h1><div class="post-info"><a></a>2023-03-04</div><div class="post-content"><p>搜索算法（Search Algorithm）指的是在某个问题的解空间中寻找目标解的一种算法。解空间是指问题的解的集合，解空间中的每一个解都代表着问题的一个可能的解决方案。搜索算法是能在解空间中寻找目标解的算法策略。<span id="more"></span></p>
+<blockquote>
+<p><strong>搜索</strong><br>在某个解空间S中，给定某个约束C，求出所有符合约束的解。</p>
+</blockquote>
+<p>搜索算法根据解空间的性质主要可以分成两种：</p>
+<ol>
+<li>抽象解空间：例如数值问题；</li>
+<li>具有具体结构的解空间：例如在图中进行搜索；</li>
+</ol>
+<h2 id="抽象解空间"><a href="#抽象解空间" class="headerlink" title="抽象解空间"></a>抽象解空间</h2><p>抽象解空间问题中，通常只关注<em>问题的状态</em>，而不考虑状态之间的关系，求解关键是抓住<em><strong>状态转移关系</strong></em>。</p>
+<h2 id="具有子结构的解空间"><a href="#具有子结构的解空间" class="headerlink" title="具有子结构的解空间"></a>具有子结构的解空间</h2><p>具有子结构的解空间中存在多个子问题，<em>每个子问题都和原问题具有相同的结构，只是规模不同</em>，求解的关键是抽象出<em><strong>子问题</strong></em>——通过将问题分解成子问题进行求解，并利用子问题的解来求解原问题的解。在这种情况下，搜索算法通常利用子问题之间的递归或归纳关系，将原问题分解成多个规模更小的子问题，对每个子问题进行求解，最后将子问题的解组合成原问题的解。主要包括回溯算法、贪心算法和动态规划算法。</p>
+<h2 id="抽象解空间和子结构解空间的关系"><a href="#抽象解空间和子结构解空间的关系" class="headerlink" title="抽象解空间和子结构解空间的关系"></a>抽象解空间和子结构解空间的关系</h2><ol>
+<li>二者都是在一定的解空间中寻找目标解；</li>
+<li>二者的求解过程都可以用树&#x2F;图来表示；</li>
+<li>通常二者可以相互转换：具有子结构的解空间可以通过<em>将子问题抽象成状态</em>来表示，而抽象解空间可以通过<em>将状态之间的转移关系表示成子问题</em>来进行拓展。</li>
+</ol>
+<h2 id="经典问题列举"><a href="#经典问题列举" class="headerlink" title="经典问题列举"></a>经典问题列举</h2><table>
+<thead>
+<tr>
+<th align="center">经典问题</th>
+<th align="center">抽象解空间</th>
+<th align="center">搜索算法</th>
+<th align="center">具有子结构的解空间</th>
+<th align="center">搜索算法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">八皇后</td>
+<td align="center">以每个格子为节点的状态空间</td>
+<td align="center">DFS</td>
+<td align="center">以每行为节点的子问题</td>
+<td align="center">DFS</td>
+</tr>
+<tr>
+<td align="center">数独游戏</td>
+<td align="center">以每个格子填数值为节点的状态空间</td>
+<td align="center">DFS</td>
+<td align="center">以每个未填格子为节点的子问题</td>
+<td align="center">DFS</td>
+</tr>
+<tr>
+<td align="center">迷宫</td>
+<td align="center">以每个格子为节点的图</td>
+<td align="center">BFS</td>
+<td align="center">以每个可行路径为节点的子问题</td>
+<td align="center">DFS&#x2F;BFS</td>
+</tr>
+<tr>
+<td align="center">单词接龙</td>
+<td align="center">以每个单词为节点的图</td>
+<td align="center">BFS</td>
+<td align="center">以每个单词为前缀的子问题及其相邻单词为节点的图</td>
+<td align="center">BFS</td>
+</tr>
+<tr>
+<td align="center">01背包问题</td>
+<td align="center">以物品状态为节点</td>
+<td align="center">DFS&#x2F;DP&#x2F;分支定界</td>
+<td align="center">以物品个数或剩余容量为节点的子问题</td>
+<td align="center">DFS&#x2F;DP</td>
+</tr>
+<tr>
+<td align="center">图的着色</td>
+<td align="center">以每个节点为节点的图</td>
+<td align="center">DFS&#x2F;分支定界</td>
+<td align="center">以每个节点颜色为状态的子问题及其相邻节点为节点的图</td>
+<td align="center">DFS</td>
+</tr>
+<tr>
+<td align="center">TSP问题</td>
+<td align="center">以每个城市状态为节点的图</td>
+<td align="center">DP&#x2F;分支定界</td>
+<td align="center">以城市集合为状态的子问题</td>
+<td align="center">DP&#x2F;分支定界</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：DFS为深度优先搜索，BFS为广度优先搜索，DP为动态规划算法，分支定界为剪枝算法的一种。</p>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2023/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">prev</a><a class="next" href="/2023/02/26/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/">next</a></div><div class="copyright"><p>&copy; 2021 - 2023 <a target="_blank" rel="noopener" href="https://github.com/brick-pid">brick pid</a>.<br>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/Dreyer/hexo-theme-artemis" target="_blank">Artemis</a>.</p></div></footer></div></body></html>

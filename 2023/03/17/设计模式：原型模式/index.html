@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>设计模式：原型模式 | Hexo</title><meta name="description" content="设计模式：原型模式 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Hexo"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div class="wrap"><header><h1 class="branding"><a href="/" title="Hexo">Hexo</a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"><a class="nav-list-link" href="https://github.com/brick-pid" target="_blank">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">设计模式：原型模式</h1><div class="post-info"><a></a>2023-03-17</div><div class="post-content"><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>原型模式用于创建<code>给定对象的副本（拷贝）</code>——假设你有一个玩具，你想要制作更多完全一样的玩具（拷贝），可以使用原型模式来创建这些副本，而<em>无需知道创建的细节</em>。 <span id="more"></span></li>
+<li>原型模式涉及到一个<code>原型对象</code>，它是一个已经存在的对象。当你想要创建一个新的对象时，只需要调用这个对象的 <code>clone()</code> 方法就可以使用这个原型对象来制作一个副本。这个副本将包含与原型对象<code>相同的属性和方法</code>。你可以随后对副本进行修改，而不会影响原型对象。</li>
+<li>原型模式的 <code>clone</code> 方法需要避免影响原型对象。</li>
+</ul>
+<h2 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h2><ul>
+<li>让类实现 <code>clone()</code> 方法，客户基于原型实例来调用 <code>clone()</code> 从而获得当前实例的克隆对象。</li>
+<li>原型模式有两种实现方法：[[深拷贝，浅拷贝]]。浅拷贝只会复制对象中基本数据类型数据和引<br>用对象的内存地址，不会递归地复制引用对象，以及引用对象的引用对象……而深拷贝得到<br>的是一份完完全全独立的对象。所以，深拷贝比起浅拷贝来说，更加耗时，更加耗内存空<br>间。</li>
+<li>如果要拷贝的对象是<em>不可变对象</em>，浅拷贝共享不可变对象是没问题的，但对于<em>可变对象</em>来<br>说，浅拷贝得到的对象和原始对象会共享部分数据，就有可能出现数据被修改的风险，也就<br>变得复杂多了。除非像我们今天实战中举的那个例子，需要从数据库中加载 10 万条数据并<br>构建散列表索引，操作非常耗时，比较推荐使用浅拷贝，否则，没有充分的理由，不要为了<br>一点点的性能提升而使用浅拷贝。</li>
+</ul>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><ul>
+<li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prototype_UML.svg/1920px-Prototype_UML.svg.png" alt="Prototype Pattern UML"></li>
+</ul>
+<h2 id="原型模式与写时拷贝的思考"><a href="#原型模式与写时拷贝的思考" class="headerlink" title="原型模式与写时拷贝的思考"></a>原型模式与写时拷贝的思考</h2><ul>
+<li>原型模式的 <code>clone()</code> 方法涉及了对于不同的[[拷贝方式]]的权衡。让我想到了之前做 xv6 实验中实现 [[copy on write fork]] 的一些体会。子进程直接拷贝父进程的内存是很低效的，因为很可能刚拷贝的内存就被 exec 加载的新程序给覆盖了，白白做无用功。 [[lazy copy]] 就是一种结合浅拷贝和深拷贝的技术，在尽量好的性能上实现较小的内存占用。</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2023/08/22/OSPP-OnlyOffice-AI-Plugin-Project-Midterm-Summarization/">prev</a><a class="next" href="/2023/03/04/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/">next</a></div><div class="copyright"><p>&copy; 2021 - 2023 <a target="_blank" rel="noopener" href="https://github.com/brick-pid">brick pid</a>.<br>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/Dreyer/hexo-theme-artemis" target="_blank">Artemis</a>.</p></div></footer></div></body></html>

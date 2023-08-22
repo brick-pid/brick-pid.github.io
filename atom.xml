@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2023-08-22T10:21:16.905Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OSPP &amp; OnlyOffice AI Plugin Project: Midterm Summarization</title>
+    <link href="http://example.com/2023/08/22/OSPP-OnlyOffice-AI-Plugin-Project-Midterm-Summarization/"/>
+    <id>http://example.com/2023/08/22/OSPP-OnlyOffice-AI-Plugin-Project-Midterm-Summarization/</id>
+    <published>2023-08-22T10:19:37.000Z</published>
+    <updated>2023-08-22T10:21:16.905Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Why-choose-this-project"><a href="#Why-choose-this-project" class="headerlink" title="Why choose this project?"></a>Why choose this project?</h2><p>Each student can choose three projects to apply for from the project list. At that time, ChatGPT had just emerged, and various large models appeared like bamboo shoots after a spring rain. I was very excited about the development of AI and wanted to participate in it. So I screened all the projects that contained the “AI” keyword and finally decided that OnlyOffice’s AI plugin project was my favorite. Because I wanted to do some application-level work on AI, I hoped to directly use the API of large models to develop some applications that could improve user work efficiency, which also coincided with the goal of the project. So I invested the most time in this project in the preliminary work, and I am grateful that my mentor was able to choose me from many candidates.</p><h2 id="What-is-the-biggest-gain"><a href="#What-is-the-biggest-gain" class="headerlink" title="What is the biggest gain?"></a>What is the biggest gain?</h2><p>When it comes to gains, it is difficult for me to describe specifically. It is better to start with my “changes”.</p><p>At first I was very nervous because I was not familiar with OnlyOffice’s technology stack. I also don’t have experience developing plugins for large software. However, after I emailed my mentor about the difficulties I encountered, he was very enthusiastic in providing me with a lot of help, including answering my questions, guiding me on what documents I should look at next, not only teaching me to fish, but also teaching me how to fish. So my first takeaway is: when encountering problems, ask questions boldly. As long as the problem is meaningful, you are very likely to get answers - this is much better than scratching your head and wasting time.</p><p>Later, as I gradually understood OnlyOffice’s framework, the development work was also gradually on track. But I also encountered some difficulties, most of which could be solved with the help of ChatGPT. One debugging experience that left a deep impression on me was when I encountered a strange behavior: every time I finished executing the context menu action, my plugin would close. I was tormented by this bug for a few days, and then I decided to ask my mentor for help. I described this behavior to my mentor. I was worried that this vague description would also confuse him. However, after multiple communications between us, and after he consulted the development team, we finally solved this problem together.</p><p>This experience gave me great inspiration and made me understand the tremendous power of cooperation, communication and exchange. I am also very grateful for the help my mentor gave me during this process.</p><p>Now, the main part of the plugin has been developed. Looking back on this one and a half month experience, I feel I have gained a lot. I am very happy to have participated in OSPP’s Open Source Summer project this time, and I am also happy to be part of the OnlyOffice community.</p><h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>Next I plan to first release the 1.0 version of the plugin to the plugin store. Afterwards, modify it based on user feedback. Finally, thank you again to my mentor Сергей Косырев, the OnlyOffice community, and the organizers of the OSPP project at the Institute of Software Chinese Academy of Sciences.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Why-choose-this-project&quot;&gt;&lt;a href=&quot;#Why-choose-this-project&quot; class=&quot;headerlink&quot; title=&quot;Why choose this project?&quot;&gt;&lt;/a&gt;Why choose this </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式：原型模式</title>
+    <link href="http://example.com/2023/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://example.com/2023/03/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</id>
+    <published>2023-03-17T07:24:29.000Z</published>
+    <updated>2023-03-17T07:27:47.703Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul><li>原型模式用于创建<code>给定对象的副本（拷贝）</code>——假设你有一个玩具，你想要制作更多完全一样的玩具（拷贝），可以使用原型模式来创建这些副本，而<em>无需知道创建的细节</em>。 <span id="more"></span></li><li>原型模式涉及到一个<code>原型对象</code>，它是一个已经存在的对象。当你想要创建一个新的对象时，只需要调用这个对象的 <code>clone()</code> 方法就可以使用这个原型对象来制作一个副本。这个副本将包含与原型对象<code>相同的属性和方法</code>。你可以随后对副本进行修改，而不会影响原型对象。</li><li>原型模式的 <code>clone</code> 方法需要避免影响原型对象。</li></ul><h2 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h2><ul><li>让类实现 <code>clone()</code> 方法，客户基于原型实例来调用 <code>clone()</code> 从而获得当前实例的克隆对象。</li><li>原型模式有两种实现方法：[[深拷贝，浅拷贝]]。浅拷贝只会复制对象中基本数据类型数据和引<br>用对象的内存地址，不会递归地复制引用对象，以及引用对象的引用对象……而深拷贝得到<br>的是一份完完全全独立的对象。所以，深拷贝比起浅拷贝来说，更加耗时，更加耗内存空<br>间。</li><li>如果要拷贝的对象是<em>不可变对象</em>，浅拷贝共享不可变对象是没问题的，但对于<em>可变对象</em>来<br>说，浅拷贝得到的对象和原始对象会共享部分数据，就有可能出现数据被修改的风险，也就<br>变得复杂多了。除非像我们今天实战中举的那个例子，需要从数据库中加载 10 万条数据并<br>构建散列表索引，操作非常耗时，比较推荐使用浅拷贝，否则，没有充分的理由，不要为了<br>一点点的性能提升而使用浅拷贝。</li></ul><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><ul><li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prototype_UML.svg/1920px-Prototype_UML.svg.png" alt="Prototype Pattern UML"></li></ul><h2 id="原型模式与写时拷贝的思考"><a href="#原型模式与写时拷贝的思考" class="headerlink" title="原型模式与写时拷贝的思考"></a>原型模式与写时拷贝的思考</h2><ul><li>原型模式的 <code>clone()</code> 方法涉及了对于不同的[[拷贝方式]]的权衡。让我想到了之前做 xv6 实验中实现 [[copy on write fork]] 的一些体会。子进程直接拷贝父进程的内存是很低效的，因为很可能刚拷贝的内存就被 exec 加载的新程序给覆盖了，白白做无用功。 [[lazy copy]] 就是一种结合浅拷贝和深拷贝的技术，在尽量好的性能上实现较小的内存占用。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;原型模式用于创建&lt;code&gt;给定对象的副本（拷贝）&lt;/code&gt;——假设你有一个玩具，你想要制作更多完全一样的玩具（拷贝），可以使用原型模式来创建这些副本，而&lt;em&gt;无需知道创建的细节&lt;/em&gt;。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搜索算法</title>
+    <link href="http://example.com/2023/03/04/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/"/>
+    <id>http://example.com/2023/03/04/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/</id>
+    <published>2023-03-04T03:52:54.000Z</published>
+    <updated>2023-03-04T03:54:19.287Z</updated>
+    
+    <content type="html"><![CDATA[<p>搜索算法（Search Algorithm）指的是在某个问题的解空间中寻找目标解的一种算法。解空间是指问题的解的集合，解空间中的每一个解都代表着问题的一个可能的解决方案。搜索算法是能在解空间中寻找目标解的算法策略。<span id="more"></span></p><blockquote><p><strong>搜索</strong><br>在某个解空间S中，给定某个约束C，求出所有符合约束的解。</p></blockquote><p>搜索算法根据解空间的性质主要可以分成两种：</p><ol><li>抽象解空间：例如数值问题；</li><li>具有具体结构的解空间：例如在图中进行搜索；</li></ol><h2 id="抽象解空间"><a href="#抽象解空间" class="headerlink" title="抽象解空间"></a>抽象解空间</h2><p>抽象解空间问题中，通常只关注<em>问题的状态</em>，而不考虑状态之间的关系，求解关键是抓住<em><strong>状态转移关系</strong></em>。</p><h2 id="具有子结构的解空间"><a href="#具有子结构的解空间" class="headerlink" title="具有子结构的解空间"></a>具有子结构的解空间</h2><p>具有子结构的解空间中存在多个子问题，<em>每个子问题都和原问题具有相同的结构，只是规模不同</em>，求解的关键是抽象出<em><strong>子问题</strong></em>——通过将问题分解成子问题进行求解，并利用子问题的解来求解原问题的解。在这种情况下，搜索算法通常利用子问题之间的递归或归纳关系，将原问题分解成多个规模更小的子问题，对每个子问题进行求解，最后将子问题的解组合成原问题的解。主要包括回溯算法、贪心算法和动态规划算法。</p><h2 id="抽象解空间和子结构解空间的关系"><a href="#抽象解空间和子结构解空间的关系" class="headerlink" title="抽象解空间和子结构解空间的关系"></a>抽象解空间和子结构解空间的关系</h2><ol><li>二者都是在一定的解空间中寻找目标解；</li><li>二者的求解过程都可以用树&#x2F;图来表示；</li><li>通常二者可以相互转换：具有子结构的解空间可以通过<em>将子问题抽象成状态</em>来表示，而抽象解空间可以通过<em>将状态之间的转移关系表示成子问题</em>来进行拓展。</li></ol><h2 id="经典问题列举"><a href="#经典问题列举" class="headerlink" title="经典问题列举"></a>经典问题列举</h2><table><thead><tr><th align="center">经典问题</th><th align="center">抽象解空间</th><th align="center">搜索算法</th><th align="center">具有子结构的解空间</th><th align="center">搜索算法</th></tr></thead><tbody><tr><td align="center">八皇后</td><td align="center">以每个格子为节点的状态空间</td><td align="center">DFS</td><td align="center">以每行为节点的子问题</td><td align="center">DFS</td></tr><tr><td align="center">数独游戏</td><td align="center">以每个格子填数值为节点的状态空间</td><td align="center">DFS</td><td align="center">以每个未填格子为节点的子问题</td><td align="center">DFS</td></tr><tr><td align="center">迷宫</td><td align="center">以每个格子为节点的图</td><td align="center">BFS</td><td align="center">以每个可行路径为节点的子问题</td><td align="center">DFS&#x2F;BFS</td></tr><tr><td align="center">单词接龙</td><td align="center">以每个单词为节点的图</td><td align="center">BFS</td><td align="center">以每个单词为前缀的子问题及其相邻单词为节点的图</td><td align="center">BFS</td></tr><tr><td align="center">01背包问题</td><td align="center">以物品状态为节点</td><td align="center">DFS&#x2F;DP&#x2F;分支定界</td><td align="center">以物品个数或剩余容量为节点的子问题</td><td align="center">DFS&#x2F;DP</td></tr><tr><td align="center">图的着色</td><td align="center">以每个节点为节点的图</td><td align="center">DFS&#x2F;分支定界</td><td align="center">以每个节点颜色为状态的子问题及其相邻节点为节点的图</td><td align="center">DFS</td></tr><tr><td align="center">TSP问题</td><td align="center">以每个城市状态为节点的图</td><td align="center">DP&#x2F;分支定界</td><td align="center">以城市集合为状态的子问题</td><td align="center">DP&#x2F;分支定界</td></tr></tbody></table><blockquote><p>注：DFS为深度优先搜索，BFS为广度优先搜索，DP为动态规划算法，分支定界为剪枝算法的一种。</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;搜索算法（Search Algorithm）指的是在某个问题的解空间中寻找目标解的一种算法。解空间是指问题的解的集合，解空间中的每一个解都代表着问题的一个可能的解决方案。搜索算法是能在解空间中寻找目标解的算法策略。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单元测试用例构造方法</title>
+    <link href="http://example.com/2023/02/26/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/"/>
+    <id>http://example.com/2023/02/26/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/</id>
+    <published>2023-02-26T04:38:23.000Z</published>
+    <updated>2023-02-26T04:41:48.900Z</updated>
+    
+    <content type="html"><![CDATA[<p>在测试驱动开发中，编写单元测试用例是承上(Specification)启下(Implementation)的一步：</p><blockquote><ol><li><strong>Spec</strong>: Write a specification for the function.</li><li><strong>Test</strong>: Write tests that exercise the specification.</li><li><strong>Implement</strong>: Write the implementation.</li></ol></blockquote><span id="more"></span><h2 id="划分输入空间"><a href="#划分输入空间" class="headerlink" title="划分输入空间"></a>划分输入空间</h2><ol><li>什么是一组好的测试用例？<ol><li>足够完备；</li><li>不至于太大；</li></ol></li><li>什么是划分（Partition）？<ol><li><a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E5%90%88%E5%88%92%E5%88%86">集合划分</a> 的数学定义；</li><li>对于输入空间而言，就是将输入空间划分为一组互不相交的子集；</li></ol></li><li>划分输入空间的目的是什么？<ol><li>将输入空间划分为互不相交的子集，以便为每一个子集构造一个测试用例；</li><li>可以类比为将输入空间划分为不同的<a href="https://zh.wikipedia.org/zh-cn/%E7%AD%89%E4%BB%B7%E7%B1%BB">等价类</a>，每一个等价类用一个<em>代表元素</em>表示；</li></ol></li><li>为什么要划分输入空间？背后的思想是什么？<ol><li>将输入空间划分为一组互不相交的子集，每个子集都用一个测试用来进行测试。这样可以达到较高的测试覆盖率，避免随机测试时测试者因为经验不足而导致的遗漏。</li></ol></li></ol><h2 id="边界值分析"><a href="#边界值分析" class="headerlink" title="边界值分析"></a>边界值分析</h2><ol><li>为什么要加入边界值分析？<ol><li>Bug经常发生在子集之间的边界处，包含边界有助于发现这些Bug；</li></ol></li><li>为什么Bug经常发生在边界处？<ol><li>可能因为<em>程序员</em>经常犯一些偏移一的错误，例如写成&lt;&#x3D;而不是&lt;，或将计数器初始化为0而不是1；</li><li>也可能是因为一些边界可能需要在代码中作为<em>特殊情况</em>处理；</li></ol></li><li>举出常见的边界值例子：<ol><li>0是正数和负数之间的边界；</li><li>数值类型（如int或double）的最大和最小值；</li><li>集合类型的边界值是空容器（如空字符串、空列表或空集）；</li></ol></li></ol><h2 id="结合边界值，得到无效等价类"><a href="#结合边界值，得到无效等价类" class="headerlink" title="结合边界值，得到无效等价类"></a>结合边界值，得到无效等价类</h2><ol><li>为什么要分析无效等价类？<ol><li>增加系统的鲁棒性；保证系统能够处理无效输入而不崩溃；</li></ol></li><li>举出常见的无效等价类的例子：<ol><li>超出边界值：如果一个输入字段的有效范围是1-10，那么任何超出这个范围的值都将被视为无效，例如负数或大于10的数字。</li><li>不符合前置条件的输入<ol><li>非数字值：如果一个输入字段只能包含数字值，那么任何非数字字符，例如字母、符号或空格都将被视为无效。</li><li>空值：如果一个输入字段是必需的且不允许空或空值，那么任何空或空值都将被视为无效。</li><li>无效格式：如果一个输入字段需要特定的格式，例如日期格式或电话号码格式，那么任何不符合该格式的输入都将被视为无效。</li></ol></li></ol></li></ol><h2 id="以为Lab1的-guessFollowsGraph-方法为例："><a href="#以为Lab1的-guessFollowsGraph-方法为例：" class="headerlink" title="以为Lab1的 guessFollowsGraph() 方法为例："></a>以为Lab1的 <code>guessFollowsGraph()</code> 方法为例：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Guess who might follow whom, from evidence found in tweets.</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tweets</span></span><br><span class="line"><span class="comment">     *            a list of tweets providing the evidence, not modified by this</span></span><br><span class="line"><span class="comment">     *            method.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> a social network (as defined above) in which Ernie follows Bert</span></span><br><span class="line"><span class="comment">     *         if and only if there is evidence for it in the given list of</span></span><br><span class="line"><span class="comment">     *         tweets.</span></span><br><span class="line"><span class="comment">     *         One kind of evidence that Ernie follows Bert is if Ernie</span></span><br><span class="line"><span class="comment">     *         @-mentions Bert in a tweet. This must be implemented. Other kinds</span></span><br><span class="line"><span class="comment">     *         of evidence may be used at the implementor&#x27;s discretion.</span></span><br><span class="line"><span class="comment">     *         All the Twitter usernames in the returned social network must be</span></span><br><span class="line"><span class="comment">     *         either authors or @-mentions in the list of tweets.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Set&lt;String&gt;&gt; <span class="title function_">guessFollowsGraph</span><span class="params">(List&lt;Tweet&gt; tweets)</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;not implemented&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>三个指标：</p><ol><li>借助边界值划分等价类：容器 <code>tweets</code> 是否为空？</li><li>前置条件：<code>tweets</code> 是否有提到其他人？</li><li>无效等价类：提到的方式是否<em>合法</em>？</li></ol><p>测试用例如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.  空列表。期望返回一个空的 social network。</span><br><span class="line">2.  多条 tweets，没有人被提到。期望返回一个空的 social network。</span><br><span class="line">3.  多条 tweets，只有一个人被提到。期望返回一个只包含这个人的 social network。</span><br><span class="line">4.  多条 tweets，有多个人被提到。期望返回一个包含这些人的 social network。</span><br><span class="line">5.  多条 tweets，出现无效的 @-mention，即 @-mention 不是 authors。期望程序能够正确处理这些无效数据，返回正确的 social network。</span><br><span class="line">6.  多条 tweets，出现自我 @-mention，即 author @-mention 自己。期望程序能够正确处理这些无效数据，返回正确的 social network。</span><br></pre></td></tr></table></figure><hr><ul><li>reference: <a href="http://web.mit.edu/6.031/www/sp21/classes/03-testing/#choosing_test_cases_by_partitioning">Reading 3: Testing</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;在测试驱动开发中，编写单元测试用例是承上(Specification)启下(Implementation)的一步：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Spec&lt;/strong&gt;: Write a specification for the function.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test&lt;/strong&gt;: Write tests that exercise the specification.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implement&lt;/strong&gt;: Write the implementation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>测试驱动开发</title>
+    <link href="http://example.com/2023/02/25/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    <id>http://example.com/2023/02/25/%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/</id>
+    <published>2023-02-25T10:45:07.000Z</published>
+    <updated>2023-02-25T10:58:18.955Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近正在学习 <a href="http://web.mit.edu/6.005/www/archive/">6.005 软件构造</a>。Lab2的核心是使用 <strong>TDD</strong> 进行开发。测试驱动开发是一个出现频率很高的词。最早在学习61B的时候有一篇文章叫做 <a href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">TDD is Dead</a>，当时因为缺少相关背景知识，不明觉厉。之后学习软件工程的时候又遇到了这个词<span id="more"></span>，TDD 属于软件构造方面的技巧。</p><blockquote><p>[! 教科书给出的定义]<br>测试驱动开发要求程序员在编写一段代码之前，优先完成该段代码的测试代码。 完成测试代码之后，程序员再编写程序代码，并在编程中重复执行测试代码，以 验证程序代码的正确性。</p></blockquote><p>TDD 主要有以下两个方面的作用：</p><ol><li>能够帮助<em>程序员</em>更加清晰地理解待实现程序的需求和规格,写出质量更高的程序；</li><li>同时能够通过测试的<em>代码</em>也会具有更高的正确性和可靠性。</li></ol><p>参加考试的时候仍然觉得这个概念非常抽象，但是做Lab2的时候我就深刻地感受到了测试驱动开发地意义。</p><p>TDD能够将程序员软件构造的三个主要阶段连接起来：<strong>理解-编码-测试</strong>。程序员根据软件的规格说明(Specification) 编写单元测试的过程中，会让程序员<em>强制理解</em>软件的需求和规格的细节。避免程序员囫囵吞枣地看一遍需求就开始编码，却因为错误理解而导致不必要的代码错误。程序员编码时，就会下意识地考虑到需求的本质，以及各种 Corner Cases。编码完成后，运行单元测试又会作为第二道保险，以确保程序的正确性。</p><p>当然，以上TDD的优点全都要基于良好的单元测试的编写。简洁、完备、有代表性的用例才可以发挥出TDD的长处。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近正在学习 &lt;a href=&quot;http://web.mit.edu/6.005/www/archive/&quot;&gt;6.005 软件构造&lt;/a&gt;。Lab2的核心是使用 &lt;strong&gt;TDD&lt;/strong&gt; 进行开发。测试驱动开发是一个出现频率很高的词。最早在学习61B的时候有一篇文章叫做 &lt;a href=&quot;https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/&quot;&gt;TDD is Dead&lt;/a&gt;，当时因为缺少相关背景知识，不明觉厉。之后学习软件工程的时候又遇到了这个词</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何在Obsidian中写博客</title>
+    <link href="http://example.com/2022/04/09/%E5%A6%82%E4%BD%95%E5%9C%A8Obsidian%E4%B8%AD%E5%86%99%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://example.com/2022/04/09/%E5%A6%82%E4%BD%95%E5%9C%A8Obsidian%E4%B8%AD%E5%86%99%E5%8D%9A%E5%AE%A2/</id>
+    <published>2022-04-09T03:36:00.000Z</published>
+    <updated>2022-04-09T03:45:57.404Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近开始用 <a href="https://obsidian.md/">Obsidian</a>写笔记（从 Logseq 转移过来），于是琢磨着有什么方法可以让写博客这件事情变得容易——毕竟[[赋能环境是维持良好习惯的场所]]，让写博客这件事情变得简单有趣，才是保持输出的关键。<span id="more"></span><br>偶然间在知乎上看到可以通过建立软链接的方式，将 Hexo 中的<code>_post</code> 文件夹链接到 Obsidian 的目录下，实现在Ob里面写博客的愉快体验。今天尝试了一下，确实很好。<br>在 cmd(管理员权限) 输入命令 <code>mklink /D &quot;dst&quot; &quot;src&quot;</code> 其中 <code>dst</code> 是目标目录地址（ob下某个文件夹）， <code>src</code> 是 Hexo 的 <code>_post_</code> 目录地址。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近开始用 &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt;写笔记（从 Logseq 转移过来），于是琢磨着有什么方法可以让写博客这件事情变得容易——毕竟[[赋能环境是维持良好习惯的场所]]，让写博客这件事情变得简单有趣，才是保持输出的关键。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2021年终-我的转折点</title>
+    <link href="http://example.com/2021/12/31/2021%E5%B9%B4%E7%BB%88-%E6%88%91%E7%9A%84%E8%BD%AC%E6%8A%98%E7%82%B9/"/>
+    <id>http://example.com/2021/12/31/2021%E5%B9%B4%E7%BB%88-%E6%88%91%E7%9A%84%E8%BD%AC%E6%8A%98%E7%82%B9/</id>
+    <published>2021-12-31T03:42:42.000Z</published>
+    <updated>2022-08-01T09:22:45.471Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>看到BBS上面大家都开始发自己的年终总结了，我看了一眼自己的blog，发现时间还停滞在几个月以前……<span id="more"></span></li><li>首先更新一下近况。一个月以来，我对于未来该怎么走的想法发生了巨大的变化。我之前一直是坚定的就业党，想着本科找工作，进互联网大厂搬砖赚钱，事情起初是这么发展的。一个月前，我开始使用 [[supermemo]]，刚入门这个软件，就惊为天人，如获至宝。因为这也许是我第一次体验[[渐近学习]]的魅力，以及其中蕴含的[[自由学习]]的理念。此时我只是对sm相见恨晚，但我从没想到我原本规划的路线已经开始跑偏。</li><li>后来我开始逐步学习叶哥发的<a href="https://www.zhihu.com/column/c_1308886122672484352">渐近学习专栏</a>，以及<a href="https://supermemo.guru/wiki/SuperMemo_Guru">supermemo guru</a>里面的文章，然后索性加入了叶哥的翻译小组。很惭愧，只翻译了一篇长青笔记的文章之后，就开始划水😓。主要是我的第二篇文章是个大文章，而且加上北京冬奥+疫情，导致期末大大提前，然后时间就非常紧张。</li><li>加入supermemo 翻译小组之后，我就开始在sm和 [[SRS]] 里面愉快地玩耍了。我发现了许多前所未见，但却非常吸引我的理念。后来，有一天，我在翻译组推送了一篇[[PEOPLE | Piotr Wozniak]]记录自己<a href="https://zhuanlan.zhihu.com/p/97887756">开发supermemo过程的备忘录</a>，我感受到了完全的冲击，好像历史就在我眼前徐徐展开。</li><li>因为 [[supermemo guru]]里面有很多与神经、大脑相关的文章，于是我很自然地对[[neuroscience]]感兴趣。我大概搜索了几天，没有发现什么合适我的项目——要么是生物工程，要么神经科学（偏医学），要么没考研名额。我觉得有些气馁。所幸，我发现了北师大脑所，他们招收计算机专业的学生，而且有几个考研名额，我感觉我被彩票砸中了。</li><li>最后，我目前的想法很简单——做自己感兴趣的research。毕竟人生苦短，按照社会的模板来走自己的人生未免太惨了一点，所以我希望可以小心呵护自己的passion，并且以[[内驱]]的方式做自己所爱。所以目前的路径规划是考研，然后用心做research，发paper，然后读博，读博后，做PI，拥有自己的实验室，做自己感兴趣的研究😊</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;看到BBS上面大家都开始发自己的年终总结了，我看了一眼自己的blog，发现时间还停滞在几个月以前……</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>强迫学习是有害的</title>
+    <link href="http://example.com/2021/12/07/%E5%BC%BA%E8%BF%AB%E5%AD%A6%E4%B9%A0%E6%98%AF%E6%9C%89%E5%AE%B3%E7%9A%84/"/>
+    <id>http://example.com/2021/12/07/%E5%BC%BA%E8%BF%AB%E5%AD%A6%E4%B9%A0%E6%98%AF%E6%9C%89%E5%AE%B3%E7%9A%84/</id>
+    <published>2021-12-07T14:03:20.000Z</published>
+    <updated>2021-12-07T14:20:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>我最近和同学聊天的时候一直有提到强迫学习(<a href="https://supermemo.guru/wiki/Coercion_in_learning">coercive learning</a>)。<span id="more"></span></li><li>今天下午和同学聊天的时候，他提到了自己在义务教育阶段曾经因为强迫学习和有毒的学校教育环境而引起心结，甚至现在还隐隐影响着他。我前一段时间虽然频繁地谈论这个词，但是因为我自己钝感强，学校教育阶段的强迫学习对我影响不是很大。所以对其危害性了解比较抽象。</li><li>直到现在我才真切地感受到强迫学习对于个人成长的有害之处。并且，学校作为强迫学习发生的场所，通常可能异化教育和教师。这一点也是下午的谈话中提到的。比如他提到的部分坏透的老师，不但对于如何实施强迫行为得心应手，而且也清楚知道如何借助学校的体系为自己攫取利益。</li><li>下面我想引用 Piotr Wozniak 在<a href="https://zhuanlan.zhihu.com/p/365716946">学校教育就像苏联经济(译文)</a>中写下一段话，这段2017年写下文字似乎预言了目前的内卷教育情况。<blockquote><p>人们总想去追求更好的指标：更多的生产力、更多的玉米、更多的收入、更多的毕业生、更好的考试成绩、更好的学校排名等等。教育工作者感叹，国家在国际考试分数榜上下降了不少名次。结果，全球目标被调高了，国家的地位也提高了。但是，又有其他国家下降，并进行类似的零和游戏策略。全球目标又被调高了。然而，当地的资源和能力与这些目标并不匹配。许多投资被报告为已经完成，而实际上它们却停留在半途而废，未被利用的浪费或放弃。许多学生项目以学分告终，而实际上应用性不强，或知之甚少，或了解甚少，或只是很少的展示。所有的失败和缺憾都以更多的规章制度和更多的繁文缛节而告终。官僚主义往往会占据经济和年轻的生命。</p></blockquote></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;我最近和同学聊天的时候一直有提到强迫学习(&lt;a href=&quot;https://supermemo.guru/wiki/Coercion_in_learning&quot;&gt;coercive learning&lt;/a&gt;)。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>做客</title>
+    <link href="http://example.com/2021/12/04/%E5%81%9A%E5%AE%A2/"/>
+    <id>http://example.com/2021/12/04/%E5%81%9A%E5%AE%A2/</id>
+    <published>2021-12-04T11:46:03.000Z</published>
+    <updated>2021-12-04T11:59:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>到别人家做客总是开心的，倘若别人家是干净整洁的。 <span id="more"></span></li><li>但如果别人家哪里脏了一块，便可告诉房子里的人；但倘若住在房子里的人不以为意，却也没得办法。不过毕竟是别人家，自己也不必感到难过，因为自己只是做客，如果因此感到不舒心，搬走便是。</li><li>但倘若是自己家了脏了哪，总是容易难过的，因为这是自己家。不过如果只是脏了那还好办，毕竟自己虽然只是孩子，但拿扫把将污垢清扫干净也是力所能及的。如果是房梁出现裂痕，或者是墙角塌方一块，这就是小孩子做不到的事了。</li><li>此时得告诉大人，请大人解决。如果大人上心，那么家就修葺一新；如果大人不以为意，那孩子也只能徒然伤心。</li><li>有一天，小孩偶然发现，墙角塌方的漏洞原来是大人进出房屋的侧路。小孩问大人：“干嘛不走大门呢？”大人便训斥道：“大人的事，小孩别管，再管，就要打你。”</li><li>小孩感到害怕，躲得远远的去了。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;到别人家做客总是开心的，倘若别人家是干净整洁的。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>感兴趣的前置条件</title>
+    <link href="http://example.com/2021/10/25/%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6/"/>
+    <id>http://example.com/2021/10/25/%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6/</id>
+    <published>2021-10-25T04:03:49.000Z</published>
+    <updated>2021-10-25T04:08:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>「感兴趣」并不是无端发生的，它需要一定的前置事件。<span id="more"></span></li><li>几天前，我偶然间开始使用logseq阅读PDF，我按照直觉朴素地使用了几天，发现非常好用。在logseq中阅读PDF，显著地减小了我在「阅读-记笔记」之间的阻力，使得想法的记录更加流畅。但是我隐隐觉得这个工作流还可以有更优的形态。</li><li>然后昨天我开始着手翻译Woz博士的一篇文章：「Incremental Life」，这篇文章以渐近为中心，介绍了各种实际应用。然后有提到渐进阅读(incremental reading)，我之前阅读过叶哥发布的介绍文章，但是当时我没有遇到类似的问题：当时对于“阅读”这件事并没有更多的思考。</li><li>但是最近使用logseq阅读pdf(a tour of cpp, 程序设计实践)的时候，和我之前用Drawboard阅读相比，我能直观地体会到阅读体验上升。我因此意识到阅读作为学习的重要一环，是以可被优化的。</li><li>因此，我又主动搜索了叶哥对渐进阅读的文章，希望能够解决我的困惑问题。这就是我今天对渐进阅读感兴趣的过程。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;「感兴趣」并不是无端发生的，它需要一定的前置事件。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>maybe what stop you from trying new things is your feeling brain</title>
+    <link href="http://example.com/2021/10/18/maybe-waht-stop-you-from-trying-new-things-is-your-feeling-brain/"/>
+    <id>http://example.com/2021/10/18/maybe-waht-stop-you-from-trying-new-things-is-your-feeling-brain/</id>
+    <published>2021-10-18T11:48:48.000Z</published>
+    <updated>2021-10-25T04:07:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>大概是上个月，我写过一篇文章， <em>bias for action and mindset shift</em> ，刚刚重新看了一遍，发现最后一段好有哲理，我现在完全想不出来😓。里面有简略地提到我当时对于去健身房的纠结和恐惧，现在回想起来仍然记忆犹新，甚至有点没办法理解。<span id="more"></span></li><li>前几天Mark Manson又重发了条推特，内容是“You suffer more from your imagination”，有点类似埃比克泰德说过的一句话。我这一次经历完全地印证了这句话。之前的纠结和害怕，用现在时兴的词汇描述就是“精神内耗”，周天和今天都去了健身房，已经开始实践Mark Rippetoe的3*5训练方式，并且体验良好。其实到了场地之后，大家都只会关注在自己的动作和重量，我也不例外。</li><li>题目里面的feeling brain是最近学习Antonio Damasio的科普文章学习到的。</li><li>当然，最后提一嘴，如果过于在乎其他人的看法，会非常痛苦。昨天在听 <em>Starting Strength Radio</em> ，是Ripptoe主持的博客，我刚好听到一期他读「讨厌他的人给他写的评论」，这一段特别有意思。开场是Ripptoe声泪俱下的难过，之后突然转悲为喜，以一种表演的方式消解了自己的情绪(让自己的feeling brain释放)，然后之后一段开始了Don’t give a fuck式的反击。即使是Ripptoe这么资深的人都有人讨厌，更何况我们普通人呢？</li><li>如果无时无刻都要在乎其他人的感受，你恐怕什么事情都做不了，因为总有不喜欢你的人。我又想起来煜征之前也是在B站被人骂了，他也为此出了一期视频，我还记得他说的好像有一句类似“被骂多了，也就没那么难受了”，虽然听着有点惨，但是这也说明The Ability of Not Giving a Fuck不是天生习得的，还需要慢慢锻炼呀？(还是得多被🐎？逃……)</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;大概是上个月，我写过一篇文章， &lt;em&gt;bias for action and mindset shift&lt;/em&gt; ，刚刚重新看了一遍，发现最后一段好有哲理，我现在完全想不出来😓。里面有简略地提到我当时对于去健身房的纠结和恐惧，现在回想起来仍然记忆犹新，甚至有点没办法理解。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>the ability to FEEL is not so obvious</title>
+    <link href="http://example.com/2021/09/30/the-ability-to-FEEL-is-not-so-obvious/"/>
+    <id>http://example.com/2021/09/30/the-ability-to-FEEL-is-not-so-obvious/</id>
+    <published>2021-09-30T09:59:09.000Z</published>
+    <updated>2021-10-25T04:07:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>今天扁桃体发炎。</p></li><li><p>下午在看 <em>Mark Manson</em> 的第二本书，第二章讲了一个叫做 <a href="http://www.psy.vanderbilt.edu/courses/psy115a/DamasioEssay/Damasio%27sPrecision.html">Elliot</a> 的人，他在一场切除脑肿瘤的手术中失去了感知情绪的能力，他无法感觉别人的情绪，自己也失去了情绪。<span id="more"></span></p></li><li><p>下午看这个章节的时候，我觉得这个观点很新奇，并且我之前也有在一直思考 <strong>情绪</strong> 的作用，之前一篇post就是讲emotion与decision making的联系。但是我万万没想到，我马上就能体验Elliot的感觉，并且 <em>推理</em>(而非感受) 失去感知情绪是多么惊悚的事情。</p></li><li><p>大约下午四点半，我出门吃饭，路上在听 <a href="https://storyfm.cn/episodes/e555/">朱铭骏在故事FM的访谈</a> 。让我大吃一惊的是，我居然完全没有共情，我听到他说话，就好像他在叙说一些琐碎的事情，这对我来说是非常不敢想象的。我非常清楚的记得我第一次看到他的视频，内心抽动，眼眶湿润，甚至还想要投身于障碍人士的科技产品研发，我非常兴奋有Quad Stick这种科技产品能够让高位截瘫的患者自如地使用电脑与在互联网遨游。</p></li><li><p>下面这一段话是我今年9月15号首次看到他的事迹记录的：</p><blockquote><p>刷b站的时候偶然间看到一个视频，眼睛不知不觉便湿润了。是 <a href="https://www.bilibili.com/video/BV1Y3411r7z4?p=1&share_medium=iphone&share_plat=ios&share_session_id=333CAEAA-F515-4AE2-931F-19A25011966C&share_source=GENERIC&share_tag=s_i&timestamp=1631635402&unique_k=zlVYfB">一位高位截瘫的消防员的故事</a> ，我不知道为什么感到难过，也许有什么深层次的原因，触动了我的内心。我也很高兴，现在的科技让他可以通过嘴巴来操控电脑和手机；我也很高兴，现在的互联网可以让他和社会交互；我也很高兴，我我能看到他的视频。<br>生活是突如其来的。他提到自己成功地进行一场公益演讲时，眼神里单纯而纯粹地开心、满足让我心头一颤。也许只有自己失去了才能够感到珍贵。</p></blockquote></li><li><p>但是今天下午我在听他的叙述时，我就像是一个旁观者，甚至能够意识到在后1&#x2F;3时，音乐的节奏变变快，应该是为了配合故事的高潮。而我注意到了配乐节奏的变化，并且想着——我现在应该感动。对比9月15日的记录，判若两人。突然想起来加缪的局外人，感觉尤为贴切。</p></li><li><p>我觉得猜测可能是因为今天扁桃体发炎导致我大脑的情绪区块进入某种冬眠状态？也许是能量都供应给了体内与病毒的对抗，供给给管理情绪的能量就减少了，导致我的共情能力直线下滑。</p></li><li><p>恰好我今天早上也记录了这样一段话，也表现了我今天的奇怪的冷漠：</p><blockquote><p>然后就是刚刚本来想要记录下今天扁桃体有点发炎的所感。我发现一旦你处于一个「生病」的状态，你对于 <strong>世界的参与度就会下降</strong> ，疏远，就像是一个旁观者一样，好像发生的事情也和我没什么关系。这种感觉很奇妙，很难形容。</p></blockquote></li><li><p>其实第一句话此时想想也不对，我记得我之前生病应该是有其他感觉的，或许是多愁善感，或许难过自己为什么如此弱不禁风，或许希望早日康复。今天这样因为生病导致的 <strong>冷漠</strong> 还是第一次遇到。当然，我相信过几天康复之后，我的共情能力应该可以恢复，毕竟我之前好几次卸载知乎就是因为在上面看到的新闻太让我生气了…… 不过今天的这次体验还是让我觉得神奇，更神奇的是，这次体验居然将各种截然不同的东西联系在一起了。</p></li><li><p>笛卡尔将思考看作是脱离于身体的活动，但是我现在的体会是，人的思考和大脑或者身体是相互左右的。</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;今天扁桃体发炎。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;下午在看 &lt;em&gt;Mark Manson&lt;/em&gt; 的第二本书，第二章讲了一个叫做 &lt;a href=&quot;http://www.psy.vanderbilt.edu/courses/psy115a/DamasioEssay/Damasio%27sPrecision.html&quot;&gt;Elliot&lt;/a&gt; 的人，他在一场切除脑肿瘤的手术中失去了感知情绪的能力，他无法感觉别人的情绪，自己也失去了情绪。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>heuristic learning</title>
+    <link href="http://example.com/2021/09/29/heuristic-learning/"/>
+    <id>http://example.com/2021/09/29/heuristic-learning/</id>
+    <published>2021-09-29T07:57:38.000Z</published>
+    <updated>2021-09-29T07:59:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>这两天在学习C++，在看CS106L的ppt，发现他的ppt真的做的特别好。做到了heuristic learning。<span id="more"></span></li><li><a href="https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1184/lectures/lecture06/06_Templates_and_Iterators.pdf">106l这节课</a> 是介绍 template ，我之前没接触template会觉得很深奥——可能是个什么厉害的东西，但是106l通过 <strong>逐步展现问题</strong> ，引发思考的方式介绍了template。让我一下子就明白了template为什么需要存在，以及template解决了哪些问题，最后介绍了一些使用template的细节和实际例子。</li><li>并且我在观察、思考这个问题的时候，自然而然地想起来CS61A(Berkly用python介绍SICP的课程)里面对于 <strong>抽象</strong> 的介绍。并且我马上意识到，template其实抽象的东西很简单——它只是将函数签名的类型抽象成 <code>generic type</code> ，其实抽象程度有限。记得之前CS61A从加法、乘法……一路抽象出了二元运算的函数。当时觉得云里雾里，但是现在回过头来，发现原来我对于抽象的理解就是在这里入门的，让我受益颇多。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;这两天在学习C++，在看CS106L的ppt，发现他的ppt真的做的特别好。做到了heuristic learning。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>logic or emotions?</title>
+    <link href="http://example.com/2021/09/25/logic-or-emotions/"/>
+    <id>http://example.com/2021/09/25/logic-or-emotions/</id>
+    <published>2021-09-25T04:28:08.000Z</published>
+    <updated>2021-09-25T04:40:14.368Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Yesterday, I watched the <em>lessons in communication</em> by Stanford on YouTube. The first lecture is about <a href="https://www.youtube.com/watch?v=QIpoSmvsyJA">how to be unforgettable</a> .<span id="more"></span> One lessened I learned is that people forget what you say in your presentation, but they remember the feelings and emotions they have.</li><li>Just now, I find that <a href="https://twitter.com/iammarkmanson/status/1441343405104062475?s=12">Mark Manson’s tweet</a> also gives a good explanation on why emotions are more impactful than fact and logic. I think it’s interesting to meet the same idea from different resources. </li><li>And I believe that It’s OK to miss some seemly good ideas, if you try to catch every good idea, you would run into the <em>FOMO</em> anxiety. The second time or third time you hear the same stuff, catch it! So I decide to write a simple post in my second time noticing the power of emotions.<blockquote><p>“People will forget what you said, people will forget what you did, but people will never forget how you made them feel.” - Maya Angelou</p></blockquote></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;Yesterday, I watched the &lt;em&gt;lessons in communication&lt;/em&gt; by Stanford on YouTube. The first lecture is about &lt;a href=&quot;https://www.youtube.com/watch?v=QIpoSmvsyJA&quot;&gt;how to be unforgettable&lt;/a&gt; .</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>bias for action and mindset shift</title>
+    <link href="http://example.com/2021/09/21/bias-for-action-and-mindset-shift/"/>
+    <id>http://example.com/2021/09/21/bias-for-action-and-mindset-shift/</id>
+    <published>2021-09-21T02:49:55.000Z</published>
+    <updated>2022-04-21T08:34:55.920Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Recently I find out a fascinating point that whether or not people decide to do one thing doesn’t depend on the <strong>benefit</strong> , but depends on the <strong>emotion</strong> .<span id="more"></span></li><li>Just like I know running is good for me, but I am too lazy to go to the playground; like I know weight training can build up strength and confidence(maybe?), but I am too scared to go to the gym.</li><li>Today when I am listening to <em>the good life podcast</em> I learn a new term <em>bias for action</em> , which means <em>The action bias describes our tendency to favor action over inaction, often to our benefit</em> . I am exactly the <strong>inaction-guy</strong> , before I do something I always tend to overthink and scare myself.</li><li>Although I investigate my emotions, I can’t beat my fear if I don’t take action. It’s like a monster, saying nothing and watching you.</li><li>I like what Jeff Su shared in his 100k celebrating video, “<em>when I first started going to the gym, when someone said to me ‘Jeff, you should be looking at no one else but yourself unless you are trying to learn proper form or technique.’”</em> I don’t understand this sentence totally until just now. Yesterday I only focus on the “focus on yourself” part, which is a solution for me to escape from my fear of what other people may think about me, but today I find the latter half-sentence is also helpful, the whole sentence combines to be an insight.</li><li>The latter part points out what we can get from other people, we can learn movements or experiences from those who are better off than us in some field. In other words, we can look to other people for inspiration or motivation, but it becomes unhealthy when we start comparing ourselves to them. When comparing, we are easy to develop a victim’s mindset, <em>why can’t I have that</em>, instead of the growth mindset, <em>what can I do to get that?</em> Jeff said, “this mindset shift has really benefited me in developing my mental strength”.</li></ul><hr><h3 id="2022-4-21-Update"><a href="#2022-4-21-Update" class="headerlink" title="2022&#x2F;4&#x2F;21 Update"></a>2022&#x2F;4&#x2F;21 Update</h3><ul><li>It’s seemly that <em>bias for inaction</em> also affects my decision-making process.  When there are two options: one that I’m familiar with, another is new and strange to me, I would probably take the familiar one. I mean, maybe <em>bias for inaction</em> also has to do with how we make a decision——stay within the comfort zone or explore the unknown. </li><li>I watch a film several years ago. Not remember the exact name but it has the <code>Yes</code> word(PS: the film is <em>The Yes Man</em>). It’s majored by Jim Carrey. The main character changed his life by saying <code>Yes</code> to everything he met. Now looking back, <code>saying YES to almost everything</code> is a way to overcome <code>bias for inaction</code> and get out of the <code>comfort zone</code>.</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;Recently I find out a fascinating point that whether or not people decide to do one thing doesn’t depend on the &lt;strong&gt;benefit&lt;/strong&gt; , but depends on the &lt;strong&gt;emotion&lt;/strong&gt; .</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>inclusive education</title>
+    <link href="http://example.com/2021/09/07/inclusive-education/"/>
+    <id>http://example.com/2021/09/07/inclusive-education/</id>
+    <published>2021-09-07T11:50:02.000Z</published>
+    <updated>2021-09-07T11:57:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>今天的故事fm， <a href="https://podcasts.apple.com/cn/podcast/%E6%95%85%E4%BA%8B-fm/id1256399960?i=1000534202610">E545.我有自闭症，但我也需要朋‪友‬</a> ，我听完心灵上真的大受震撼。我不知道如何描述这种感觉，也许是一种使命感，让我觉得我想要做点什么。<span id="more"></span>听后半部分的时候特别感动，是厦外海沧附属学校一个患有儿童自闭症女生的故事。她一年级入学，期间老师对于班级氛围积极引导，在周围同学的呵护关爱之下，逐步掌握了社交能力，到了四年级，几乎与常人无异了。</li><li>听到这个故事的时候，我几乎潸然泪下。这个故事就像是围炉的温暖，让我在各种泥沙俱下的信息冲刷下拾回了一点点温暖。</li><li>同时我也在想，儿童真的拥有无限的可能。在正确的、积极的引导和氛围下，儿童能够学会善良、关爱，愿意去帮助那些暂时需要帮助的群体；但是在充斥着不良信息的环境下，儿童也有可能做出巨大的恶而不自觉。我觉得目前儿童过早地接触到充斥着牛鬼神蛇的社交平台可能会造成不良影响；同时教育竞争低龄化也可能会导致社会达尔文主义的倾向在小孩心里萌芽。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;今天的故事fm， &lt;a href=&quot;https://podcasts.apple.com/cn/podcast/%E6%95%85%E4%BA%8B-fm/id1256399960?i=1000534202610&quot;&gt;E545.我有自闭症，但我也需要朋‪友‬&lt;/a&gt; ，我听完心灵上真的大受震撼。我不知道如何描述这种感觉，也许是一种使命感，让我觉得我想要做点什么。</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>how to create targeted and insightful communication</title>
+    <link href="http://example.com/2021/09/06/how-to-create-targeted-and-insightful-communication/"/>
+    <id>http://example.com/2021/09/06/how-to-create-targeted-and-insightful-communication/</id>
+    <published>2021-09-06T05:43:32.000Z</published>
+    <updated>2021-09-06T08:59:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>刚刚在听 <em><a href="https://www.gsb.stanford.edu/business-podcasts/think-fast-talk-smart">Think Fast, Talk Smart</a></em> ，有一段是说 <a href="https://www.airr.io/quote/6135a59cfc4941000ee1a3f1">how to create targeted and insightful communication</a> ，里面有提到的很重要的一点就是让对方觉得谈话的内容与自己是相关的、重要的(relevant and connected)。<span id="more"></span>guest 举了自己写 neuroscience 研究的文章或者讲座的时候，会尽量让自己的语言平易近人(reachable)，并且让听众觉得自己有必要继续听下去(give them a reason to care)，接收的信息是与自己有关、重要的。</li><li>然后我就想起了昨天无聊在看豆瓣小组”推辞学“看到的一些好玩的东西，比如有的帖子“拒绝成为情绪垃圾桶、拒绝安慰朋友”。我觉得应该是一个人无法长期维持「与自己不相关」且包含负能量的交谈。如果觉得和某个人的交流没有价值，又不相关，have no reason to care，那么在一两次礼貌性的“糊弄”后，可能最后连糊弄都不想糊弄。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;刚刚在听 &lt;em&gt;&lt;a href=&quot;https://www.gsb.stanford.edu/business-podcasts/think-fast-talk-smart&quot;&gt;Think Fast, Talk Smart&lt;/a&gt;&lt;/em&gt; ，有一段是说 &lt;a href=&quot;https://www.airr.io/quote/6135a59cfc4941000ee1a3f1&quot;&gt;how to create targeted and insightful communication&lt;/a&gt; ，里面有提到的很重要的一点就是让对方觉得谈话的内容与自己是相关的、重要的(relevant and connected)。</summary>
+    
+    
+    
+    
+    <category term="podcast" scheme="http://example.com/tags/podcast/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>intuition over memorization</title>
+    <link href="http://example.com/2021/09/05/intuition-over-memorization/"/>
+    <id>http://example.com/2021/09/05/intuition-over-memorization/</id>
+    <published>2021-09-05T00:50:43.000Z</published>
+    <updated>2021-09-05T00:57:34.236Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>今天早上听了一期 <em>developer tea</em> ，刚好在去教室、吃饭的路上听完。这一期说的是「我们应该培养直觉(intuition)，而非机械地记忆(memorization)」。 <span id="more"></span></li><li>播客里面有几个比喻让我觉得很生动。比如「直觉就像是眼镜片上的色彩，让你看到的世界不同；但是记忆的知识像是你收藏了几个不常用的工具到你的工具箱里，你不知道什么时候可以用上」。</li><li>结合我最近正在学习算法的经历，感觉是有用的，也给我打了一个警钟：那就是别过分关注某个题目的技巧，别生搬硬套，机械记忆；理解背后的思想，学习更加通用的方法，培养直觉才是更重要的事情。</li><li>当然，这并不是说完全什么东西都不去记忆。领域里面重要的基础知识是需要好好理解，再记忆掌握的。只是说没有必要强求记忆所有东西，面面俱到。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;今天早上听了一期 &lt;em&gt;developer tea&lt;/em&gt; ，刚好在去教室、吃饭的路上听完。这一期说的是「我们应该培养直觉(intuition)，而非机械地记忆(memorization)」。</summary>
+    
+    
+    
+    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
+    
+    
+    <category term="podcast" scheme="http://example.com/tags/podcast/"/>
+    
+    <category term="develop tea" scheme="http://example.com/tags/develop-tea/"/>
+    
+  </entry>
+  
+</feed>

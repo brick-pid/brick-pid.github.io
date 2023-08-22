@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>测试驱动开发 | Hexo</title><meta name="description" content="测试驱动开发 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/theme.css"><link rel="search" type="application/opensearchdescription+xml" href="/atom.xml" title="Hexo"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div class="wrap"><header><h1 class="branding"><a href="/" title="Hexo">Hexo</a></h1><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">HOME</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives" target="_self">ARCHIVES</a></li><li class="nav-list-item"><a class="nav-list-link" href="https://github.com/brick-pid" target="_blank">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">测试驱动开发</h1><div class="post-info"><a></a>2023-02-25</div><div class="post-content"><p>最近正在学习 <a target="_blank" rel="noopener" href="http://web.mit.edu/6.005/www/archive/">6.005 软件构造</a>。Lab2的核心是使用 <strong>TDD</strong> 进行开发。测试驱动开发是一个出现频率很高的词。最早在学习61B的时候有一篇文章叫做 <a target="_blank" rel="noopener" href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">TDD is Dead</a>，当时因为缺少相关背景知识，不明觉厉。之后学习软件工程的时候又遇到了这个词<span id="more"></span>，TDD 属于软件构造方面的技巧。</p>
+<blockquote>
+<p>[! 教科书给出的定义]<br>测试驱动开发要求程序员在编写一段代码之前，优先完成该段代码的测试代码。 完成测试代码之后，程序员再编写程序代码，并在编程中重复执行测试代码，以 验证程序代码的正确性。</p>
+</blockquote>
+<p>TDD 主要有以下两个方面的作用：</p>
+<ol>
+<li>能够帮助<em>程序员</em>更加清晰地理解待实现程序的需求和规格,写出质量更高的程序；</li>
+<li>同时能够通过测试的<em>代码</em>也会具有更高的正确性和可靠性。</li>
+</ol>
+<p>参加考试的时候仍然觉得这个概念非常抽象，但是做Lab2的时候我就深刻地感受到了测试驱动开发地意义。</p>
+<p>TDD能够将程序员软件构造的三个主要阶段连接起来：<strong>理解-编码-测试</strong>。程序员根据软件的规格说明(Specification) 编写单元测试的过程中，会让程序员<em>强制理解</em>软件的需求和规格的细节。避免程序员囫囵吞枣地看一遍需求就开始编码，却因为错误理解而导致不必要的代码错误。程序员编码时，就会下意识地考虑到需求的本质，以及各种 Corner Cases。编码完成后，运行单元测试又会作为第二道保险，以确保程序的正确性。</p>
+<p>当然，以上TDD的优点全都要基于良好的单元测试的编写。简洁、完备、有代表性的用例才可以发挥出TDD的长处。</p>
+</div></article></div></main><footer><div class="paginator"><a class="prev" href="/2023/02/26/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/">prev</a><a class="next" href="/2022/04/09/%E5%A6%82%E4%BD%95%E5%9C%A8Obsidian%E4%B8%AD%E5%86%99%E5%8D%9A%E5%AE%A2/">next</a></div><div class="copyright"><p>&copy; 2021 - 2023 <a target="_blank" rel="noopener" href="https://github.com/brick-pid">brick pid</a>.<br>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/Dreyer/hexo-theme-artemis" target="_blank">Artemis</a>.</p></div></footer></div></body></html>
