@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2023/08/22/OSPP-OnlyOffice-AI-Plugin-Project-Midterm-Summarization/</loc>
     
-    <lastmod>2023-08-22</lastmod>
+    <lastmod>2023-08-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,7 +166,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2023-08-22</lastmod>
+    <lastmod>2023-08-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -174,14 +174,14 @@
   
   <url>
     <loc>http://example.com/tags/podcast/</loc>
-    <lastmod>2023-08-22</lastmod>
+    <lastmod>2023-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/develop-tea/</loc>
-    <lastmod>2023-08-22</lastmod>
+    <lastmod>2023-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -190,7 +190,7 @@
   
   <url>
     <loc>http://example.com/categories/%E9%9A%8F%E6%83%B3/</loc>
-    <lastmod>2023-08-22</lastmod>
+    <lastmod>2023-08-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
