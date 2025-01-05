@@ -3,3 +3,4 @@ languageCode = 'en-us'
 title = "Brick-Pid's Blog"
 theme = 'no-theme'
 paginate = 10
+publishDir = "docs"
