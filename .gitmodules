@@ -1,0 +1,3 @@
+[submodule "themes/no-theme"]
+	path = themes/no-theme
+	url = https://github.com/hanwenguo/hugo-theme-nostyleplease
