@@ -1,0 +1,5 @@
+baseURL = 'https://brick-pid.github.io/'
+languageCode = 'en-us'
+title = "Brick-Pid's Blog"
+theme = 'no-theme'
+paginate = 10
