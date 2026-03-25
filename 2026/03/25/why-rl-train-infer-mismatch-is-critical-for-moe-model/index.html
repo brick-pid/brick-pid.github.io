@@ -57,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">3 min read</span>
+    <span class="article-duration">2 min read</span>
     
 
     <h1 class="article-title">Why RL Train-infer Mismatch is Critical for MoE Model?</h1>
@@ -71,14 +71,12 @@
       
 
 
-<p>在做 LLM 的 RL post-training 时，我们常常默认一个前提：rollout 时模型采样到的行为，和训练时重新计算 log probability 的模型，是同一个 policy。只有这样，on-policy RL 的假设才成立，像 PPO、GRPO 这类方法里的 importance ratio、KL 约束、old policy reference 才是有意义的。</p>
-<p>但现实并不是这样。</p>
-<p>今天很多 RL 系统，采样侧会用 vLLM、SGLang、TensorRT-LLM 这类高吞吐推理引擎，而训练侧则用 FSDP、Megatron、DeepSpeed 之类的训练框架。两边的 kernel、数值精度、并行切分策略、batching 方式都不同。结果是：<strong>同样的 token 序列，rollout engine 和 training engine 给出的 logits 并不相同。</strong></p>
-<p>这就是所谓的 train-infer mismatch。因为 dense 模型的结构是连续的，所以影响比较小；单对于 MoE 模型来说，由于 Expert Router 的存在，会导致严重的训练不稳定。</p>
 <div id="什么叫训推一致" class="section level2">
 <h2>什么叫训推一致</h2>
-<p>训推一致的一个直接定义是：</p>
-<p><span class="math display">\[
+<p>在做 LLM 的 RL post-training 时，我们常常默认一个前提：rollout 时模型采样到的行为，和训练时重新计算 log probability 的模型，是同一个模型。只有这样，on-policy RL 的假设才成立，像 PPO、GRPO 这类方法里的 importance ratio、KL 约束、old policy reference 才是有意义的。</p>
+<p>但在实际情况下，为了提高采样效率，我们会在训练时使用更吞吐的推理引擎，例如 vLLM, SGLang，而训练时使用更精确的训练引擎，例如 FSDP、Megatron。这种差异导致训练和推理时，两边的 kernel、数值精度、并行切分策略、batching 方式都不同。结果导致同样的 token 序列，训练引擎和推理引擎给出的 logits 并不相同 —— 这就是 <strong>RL 中的训推不一致</strong>问题。</p>
+<p>我们可以如下定义：
+<span class="math display">\[
 \pi_\theta^{rollout}(y_t \mid x, y_{&lt;t}) = \pi_\theta^{train}(y_t \mid x, y_{&lt;t})
 \]</span></p>
 <p>这里有三个关键前提：</p>
@@ -97,10 +95,7 @@
 </div>
 <div id="为什么-moe-上这个问题更严重" class="section level2">
 <h2>为什么 MoE 上这个问题更严重</h2>
-<blockquote>
-<p>在相同的误差程度下，MoE 多了一个<strong>放大误差的离散路由层。</strong></p>
-</blockquote>
-<p>MoE 的核心结构是 router + experts。router 会根据当前 hidden state 选择少数几个 expert 参与计算。也就是说，MoE 不是所有参数都参与前向，而是先做一次路由决策，再按这个决策走不同的计算分支。</p>
+<p>在 dense 模型的结构是连续的，所以影响比较小；单对于 MoE 模型来说，由于 Expert Router 的存在，不同的路由选择会激活不同的专家，导致严重的训练不稳定。也即，在相同的误差程度下，MoE 多了一个<strong>放大误差的离散路由层。</strong></p>
 <div class="float">
 <img src="moe-arch.png" alt="MoE 结构示意图。Router 根据当前表示选择少数 experts 参与实际计算，因此微小的数值扰动也可能被放大成不同的 expert path。" />
 <div class="figcaption">MoE 结构示意图。Router 根据当前表示选择少数 experts 参与实际计算，因此微小的数值扰动也可能被放大成不同的 expert path。</div>
@@ -116,8 +111,8 @@
 <li>最终表现为 reward、entropy、gradient norm、PPL 等指标出现尖峰甚至训练崩溃</li>
 </ol>
 </div>
-<div id="这会怎样破坏-rl-训练" class="section level2">
-<h2>这会怎样破坏 RL 训练</h2>
+<div id="为什么训推不一致导致-rl-训练不稳定" class="section level2">
+<h2>为什么训推不一致导致 RL 训练不稳定</h2>
 <p>如果从 RL 的角度看，train-infer mismatch 的本质是：你用采样分布 <span class="math inline">\(\mu\)</span> 拿到了数据，但训练时优化的是另一个分布 <span class="math inline">\(\pi\)</span> 下的目标，而且这两个分布之间的差异并不小。</p>
 <p>当这种差异存在时，问题通常分成两类：</p>
 <ol style="list-style-type: decimal">
@@ -128,31 +123,13 @@ importance ratio 变得很大，梯度噪声暴涨。即便训练不立刻崩，
 </ol>
 <p>这也是为什么很多系统里你会看到一种表面矛盾的现象：训练指标没有马上 explode，但 reward 上不去，或者一旦进入更长响应、更复杂 agent rollout、多轮 tool use 场景就开始不稳定。不是算法突然失效，而是 mismatch 被长序列和复杂状态分布放大了。</p>
 </div>
-<div id="为什么普通-dense-模型影响相对较小" class="section level2">
-<h2>为什么普通 dense 模型影响相对较小</h2>
-<p>dense 模型当然也会有 mismatch，但它至少没有路由层这个离散放大器。</p>
-<p>对 dense 模型来说，训推差异更多表现为：</p>
-<ol style="list-style-type: decimal">
-<li>同一个 token 的概率有一些偏差</li>
-<li>序列越长，这些偏差沿着自回归链条累计</li>
-<li>重要性采样会变得越来越 noisy</li>
-</ol>
-<p>对 MoE 模型来说，上面这些问题还会额外叠加：</p>
-<ol style="list-style-type: decimal">
-<li>router score 的微小误差</li>
-<li>top-k experts 的切换</li>
-<li>整条计算路径变化</li>
-<li>训练侧与推理侧 logprob 出现更剧烈偏差</li>
-</ol>
-<p>所以可以把它理解为：<strong>dense 模型的 mismatch 更像是“概率连续漂移”，MoE 的 mismatch 更像是“概率漂移 + 计算图切换”。</strong></p>
-</div>
-<div id="现在有哪些解决思路" class="section level2">
-<h2>现在有哪些解决思路</h2>
-<p>从工程上看，主流方案大致分成三类。</p>
+<div id="解决方案" class="section level2">
+<h2>解决方案</h2>
+<p>主流方案大致分成三类。</p>
 </div>
 <div id="修基础设施让训推尽量一致" class="section level2">
 <h2>1. 修基础设施，让训推尽量一致</h2>
-<p>第一条路线是最“硬核”的：直接对齐 training stack 和 inference stack，让两边在 kernel 层和系统层尽可能得到一致结果。</p>
+<p>直接对齐 training stack 和 inference stack，让两边在 kernel 层和系统层尽可能得到一致结果。</p>
 <p>这类工作的核心关键词通常是 deterministic inference 和 batch-invariant kernels。它的目标不是“平均差不多”，而是同一个请求在不同 batch 条件下，仍然尽量得到相同结果。</p>
 <p>典型思路包括：</p>
 <ol style="list-style-type: decimal">
@@ -161,93 +138,30 @@ importance ratio 变得很大，梯度噪声暴涨。即便训练不立刻崩，
 <li>为 matmul、RMSNorm、attention 提供 batch-invariant 实现</li>
 <li>在训练侧补齐与推理侧一致的前向/反向路径</li>
 </ol>
-<p>这条路线的好处很明显：如果训推真的足够一致，那么 on-policy RL 的假设就重新站稳了。</p>
 <p>但代价也很明显：</p>
 <ol style="list-style-type: decimal">
 <li>工程复杂</li>
 <li>适配不同模型和后端的成本高</li>
-<li>往往会损失吞吐</li>
+<li>往往会损失部分性能</li>
 </ol>
-<p>换句话说，它更像是在拿性能换一致性。</p>
 </div>
-<div id="承认不一致存在在算法侧做-correction" class="section level2">
-<h2>2. 承认不一致存在，在算法侧做 correction</h2>
-<p>第二条路线更现实：既然训推完全对齐太贵，那就承认 rollout distribution 和 training distribution 不一样，然后在算法侧做 off-policy correction。</p>
-<p>最直接的思路是 importance sampling。也就是对 rollout 样本乘上：</p>
-<p><span class="math display">\[
-\rho = \frac{\pi_{train}(y)}{\pi_{rollout}(y)}
-\]</span></p>
-<p>但这里很快会碰到一个难点：对长序列自回归模型，sequence-level ratio 是 token ratio 的乘积，长度一长，variance 很容易指数级爆炸。</p>
-<p>于是工业界开始使用各种变体：</p>
+<div id="允许训推不一致在算法侧做校准" class="section level2">
+<h2>2. 允许训推不一致，在算法侧做校准</h2>
+<p>第二条路线更现实：既然训推完全对齐太贵，那就承认 rollout distribution 和 training distribution 不一样，然后在算法侧做 off-policy correction。主要包括对 importance sampling 做改进。</p>
 <ol style="list-style-type: decimal">
 <li>TIS，truncated importance sampling</li>
 <li>MIS，masked importance sampling</li>
-<li>GSPO，sequence-level IS</li>
+<li>GSPO，sequence-level importance sampling</li>
 <li>rejection sampling 或 geometric mean rejection</li>
 </ol>
 </div>
 <div id="对-moe-做-routing-replay-keep-routing" class="section level2">
 <h2>3. 对 MoE 做 routing replay / keep routing</h2>
-<p>对 MoE 来说，还有一条非常针对性的路线：<strong>不要只修概率，直接修路由。</strong></p>
-<p>因为问题的核心不只是 logprob 偏差，而是 router 决策不一致导致 expert 激活不同。所以很自然的做法是：</p>
-<ol style="list-style-type: decimal">
-<li>在 rollout 时记录 router distribution 或 routing decision</li>
-<li>在训练重算时复用同样的 routing</li>
-<li>强制训练侧走和推理侧相同的 expert 路径</li>
-</ol>
-<p>这类方法通常被称为 keep routing 或 routing replay。</p>
-<p>它特别适合 MoE，因为它直接打在问题根上：既然数值误差会把 router 推向不同 expert，那就不要给 router 第二次“自由发挥”的机会，而是把 rollout 时的路径保留下来。</p>
-<p>这个思路已经在一些工作里出现，例如 rollout routing replay。你的笔记里也提到，MIMO R3 和 DeepSeek V3.2 都采用了相近方向的思路。</p>
-</div>
-<div id="gspo-为什么值得关注" class="section level2">
-<h2>GSPO 为什么值得关注</h2>
-<p>GSPO 的一个关键优势在于，它把关注点从 token-level likelihood 转到了 sequence-level likelihood。直观上，这意味着它对单个 token 上的局部波动、甚至局部 routing fluctuation，没有那么敏感。</p>
-<p>这带来两个后果：</p>
-<ol style="list-style-type: decimal">
-<li>它可以减少对 routing replay 这类基础设施技巧的依赖</li>
-<li>它更适合在存在训推不一致的真实系统里工作</li>
-</ol>
-<p>这不代表 infra 问题不存在了，而是说：如果算法本身对局部 mismatch 更鲁棒，那么系统的可用工作区间会更大。</p>
-</div>
-<div id="一个更实用的判断框架" class="section level2">
-<h2>一个更实用的判断框架</h2>
-<p>如果把这些方案压缩成工程决策，我觉得可以用下面这个框架来判断。</p>
-<p>如果你的 mismatch 很小，系统比较干净，主要目标是尽量保留样本效率，那么可以优先考虑：</p>
-<ol style="list-style-type: decimal">
-<li>更好的 deterministic / batch-invariant infra</li>
-<li>sequence-level TIS 这类 bias-variance trade-off 更好的 correction</li>
-</ol>
-<p>如果你的 mismatch 很大，尤其是：</p>
-<ol style="list-style-type: decimal">
-<li>MoE 模型</li>
-<li>长响应</li>
-<li>tool use / agent rollout</li>
-<li>多轮交互</li>
-<li>推理和训练后端差异很大</li>
-</ol>
-<p>那只靠普通 token-level IS 往往不够。你需要更激进地考虑：</p>
-<ol style="list-style-type: decimal">
-<li>sequence-level MIS</li>
-<li>routing replay / keep routing</li>
-<li>直接过滤掉高 mismatch 样本</li>
-</ol>
-<p>也就是说，在复杂场景里，“保住训练稳定性”通常比“榨干每一条样本”更重要。</p>
-</div>
-<div id="我对这个问题的一个核心判断" class="section level2">
-<h2>我对这个问题的一个核心判断</h2>
-<p>我现在越来越倾向于把 train-infer mismatch 看成 RL engineering 里的一个一级问题，而不是一个实现细节。</p>
-<p>过去大家容易把 RL 训练不稳定归因于 reward noisy、advantage 估计不好、学习率不对、KL 不合适。但在现代 LLM RL 系统里，尤其是训练后端和推理后端解耦以后，<strong>训推不一致本身就是一个独立变量</strong>。</p>
-<p>而在 MoE 上，这个变量的破坏性会更强，因为 MoE 把连续数值误差升级成了离散计算路径差异。你不是只在比较两份“差不多的 logits”，而是在比较两条可能激活不同 expert 的前向路径。</p>
-<p>这也是为什么我认为，MoE 的 RL 稳定性问题，不能只从 optimizer 或 reward design 上找答案。很多时候，真正的问题在更底层：</p>
-<ol style="list-style-type: decimal">
-<li>你的 rollout engine 和 training engine 是否在算同一个 policy</li>
-<li>你的 router 在训推之间是否会发生路径漂移</li>
-<li>你的 IS correction 修正的是“概率偏差”，还是“路径偏差”</li>
-</ol>
+<p>对 MoE 模型来说，除了 logprob 偏差，在 MoE 还包括 expert 激活不同。所以很自然的做法是在推理时记录激活的专家，在训练时复用，强制训练侧走和推理侧相同的 expert 路径。这类方法通常被称为 keep routing 或 routing replay。MIMO R3 和 DeepSeek V3.2 都采用了相近方向的思路。</p>
 </div>
 <div id="总结" class="section level2">
 <h2>总结</h2>
-<p>MoE 的 RL 训练很容易出现一种错觉：表面上是在做 on-policy RL，实际上是高偏差、高方差的 off-policy 系统。<strong>RL 的 train-infer mismatch 在 MoE 模型里则会因为动态路由而被进一步放大，最终从 logprob 偏差升级为 expert path mismatch，直接破坏 on-policy 假设与训练稳定性。</strong></p>
+<p><strong>RL 的 train-infer mismatch 在 MoE 模型里则会因为动态路由而被进一步放大，最终从 logprob 偏差升级为 expert path mismatch，直接破坏 on-policy 假设与训练稳定性。</strong></p>
 <p>所以解决这个问题，要同时看三层：</p>
 <ol style="list-style-type: decimal">
 <li>Infra：尽量做 deterministic / batch-invariant inference</li>
