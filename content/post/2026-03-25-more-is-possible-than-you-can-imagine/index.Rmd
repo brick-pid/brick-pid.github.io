@@ -1,0 +1,12 @@
+---
+title: Possibility Exceeds Imagination
+author: ~
+date: '2026-03-25'
+slug: possibility-exceeds-imagination
+categories: []
+tags: []
+---
+
+> The space of things you can do is much greater than the space of things you can conceive of doing. --- François Chollet
+
+花了两个小时的时间，在 codex 的协助下，打通了 heptabase -> blog 的写作流程。从现在开始，我在 heptabase 的笔记，就可以很快地转化成博客文章了。**Build in Public！**
