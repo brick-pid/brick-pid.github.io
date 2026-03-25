@@ -6,8 +6,22 @@
     <description>Recent content on A Hugo website</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 30 Dec 2016 21:49:57 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why RL Train-infer Mismatch is Critical for MoE Model?</title>
+      <link>/2026/03/25/why-rl-train-infer-mismatch-is-critical-for-moe-model/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>/2026/03/25/why-rl-train-infer-mismatch-is-critical-for-moe-model/</guid>
+      <description>&lt;p&gt;在做 LLM 的 RL post-training 时，我们常常默认一个前提：rollout 时模型采样到的行为，和训练时重新计算 log probability 的模型，是同一个 policy。只有这样，on-policy RL 的假设才成立，像 PPO、GRPO 这类方法里的 importance ratio、KL 约束、old policy reference 才是有意义的。&lt;/p&gt;&#xA;&lt;p&gt;但现实并不是这样。&lt;/p&gt;&#xA;&lt;p&gt;今天很多 RL 系统，采样侧会用 vLLM、SGLang、TensorRT-LLM 这类高吞吐推理引擎，而训练侧则用 FSDP、Megatron、DeepSpeed 之类的训练框架。两边的 kernel、数值精度、并行切分策略、batching 方式都不同。结果是：&lt;strong&gt;同样的 token 序列，rollout engine 和 training engine 给出的 logits 并不相同。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;这就是所谓的 train-infer mismatch。因为 dense 模型的结构是连续的，所以影响比较小；单对于 MoE 模型来说，由于 Expert Router 的存在，会导致严重的训练不稳定。&lt;/p&gt;&#xA;&lt;div id=&#34;什么叫训推一致&#34; class=&#34;section level2&#34;&gt;&#xA;&lt;h2&gt;什么叫训推一致&lt;/h2&gt;&#xA;&lt;p&gt;训推一致的一个直接定义是：&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[&#xA;\pi_\theta^{rollout}(y_t \mid x, y_{&amp;lt;t}) = \pi_\theta^{train}(y_t \mid x, y_{&amp;lt;t})&#xA;\]&lt;/span&gt;&lt;/p&gt;&#xA;&lt;p&gt;这里有三个关键前提：&lt;/p&gt;&#xA;&lt;ol style=&#34;list-style-type: decimal&#34;&gt;&#xA;&lt;li&gt;输入是同一个 prompt 和同一段前缀 token 序列&lt;/li&gt;&#xA;&lt;li&gt;比较的是 rollout 引擎和 train 引擎&lt;/li&gt;&#xA;&lt;li&gt;两边输出的 logits 或对应概率分布一致&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;如果同样的序列，进入训练引擎和推理引擎后得到的 logits 不同，那么训推就不一致。这个差异表面上只是“两个 logprob 不一样”，但在 RL 里它会直接污染梯度估计。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/2020/12/01/hello-r-markdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      <guid>/2020/12/01/hello-r-markdown/</guid>
+      <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;&#xA;&lt;h1&gt;R Markdown&lt;/h1&gt;&#xA;&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;&#xA;&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)&#xA;##      speed           dist       &#xA;##  Min.   : 4.0   Min.   :  2.00  &#xA;##  1st Qu.:12.0   1st Qu.: 26.00  &#xA;##  Median :15.0   Median : 36.00  &#xA;##  Mean   :15.4   Mean   : 42.98  &#xA;##  3rd Qu.:19.0   3rd Qu.: 56.00  &#xA;##  Max.   :25.0   Max.   :120.00&#xA;fit &amp;lt;- lm(dist ~ speed, data = cars)&#xA;fit&#xA;## &#xA;## Call:&#xA;## lm(formula = dist ~ speed, data = cars)&#xA;## &#xA;## Coefficients:&#xA;## (Intercept)        speed  &#xA;##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;&#xA;&lt;h1&gt;Including Plots&lt;/h1&gt;&#xA;&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>A Plain Markdown Post</title>
       <link>/2016/12/30/a-plain-markdown-post/</link>
